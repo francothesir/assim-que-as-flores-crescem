@@ -2011,7 +2011,7 @@ spritePerson=function(c,cx,feet,custom,dir='down',walk=0,zoom=2){
  }
 };
 
-drawTile=function(x,y,sx,sy){
+v07TileConceptUnused=function(x,y,sx,sy){
  const t=worldTile(x,y),h=hash(x,y,9);
  let col=soilColor(x,y),top=v07Shade(col,18),side=v07Shade(col,-14);
  if(t?.kind==='soil'){col=t.moisture>15?'#8a6845':'#a67c52';top=v07Shade(col,18);side=v07Shade(col,-18)}
