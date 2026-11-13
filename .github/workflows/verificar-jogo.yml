@@ -1,0 +1,38 @@
+name: Verificar jogo
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validar estrutura do HTML
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          html = Path('index.html').read_text(encoding='utf-8')
+          assert '<!DOCTYPE html>' in html, 'Documento HTML ausente'
+          assert '<canvas' in html, 'Canvas do jogo ausente'
+          assert '</html>' in html, 'HTML incompleto'
+          scripts = re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', html, re.S)
+          assert scripts, 'Script do jogo ausente'
+          Path('/tmp/flores-check.js').write_text('\n'.join(scripts), encoding='utf-8')
+          print('Estrutura e scripts detectados')
+          PY
+      - name: Validar sintaxe JavaScript
+        run: node --check /tmp/flores-check.js
