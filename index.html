@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#233327"><title>Assim que as Flores Crescem — O cerco da floresta v0.7</title><style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#233327"><title>Assim que as Flores Crescem — O cerco da floresta v0.8</title><style>
 :root{--paper:#f8f0d9;--ink:#40392b;--green:#49684b;--leaf:#759169;--line:#bdad90;--sand:#e3be86;--rose:#a36b88;--dark:#252b22}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#1f2721;color:var(--ink)}body{font-family:Trebuchet MS,Verdana,Arial,sans-serif}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #ddb45c;outline-offset:3px}
 .hidden{display:none!important}.pixel{image-rendering:pixelated}.screen{min-height:100vh}
@@ -135,7 +135,7 @@ html,body{height:100%;margin:0;overflow:hidden}
   </section>
 </div>
 <div id="game" class="screen hidden">
-<header class="topbar"><div class="brand"><div class="brand-icon">✿</div><div><b>Assim que as Flores Crescem</b><small>O cerco da primeira floresta • v0.7</small></div></div>
+<header class="topbar"><div class="brand"><div class="brand-icon">✿</div><div><b>Assim que as Flores Crescem</b><small>O cerco da primeira floresta • v0.8</small></div></div>
 <div class="top-stat"><span id="dayLabel">☀️ DIA 01</span><span id="nightStatus">☀️ INIMIGOS DORMINDO</span><button class="tinybutton" id="soundButton">♫ SOM: NÃO</button><button class="tinybutton" id="fullscreenButton">⛶</button></div></header>
 <div id="mobileStatus" class="mobile-status"></div>
 <div class="game-layout">
@@ -161,7 +161,7 @@ html,body{height:100%;margin:0;overflow:hidden}
 <div class="divider"></div><div class="little-label">Lei do deserto</div><p class="journal">“A terra responde ao cuidado; a noite cobra o abandono.”</p></div></aside>
 </div><div class="world-guide">✿ O MAPA CRESCE COM VOCÊ · E COLETA RECURSOS · ESPAÇO USA A FERRAMENTA · CADA CLIQUE CONSTRÓI OU CANCELA ✿</div></div>
 <div id="overlay" class="hidden"><div class="overlay-window"><div class="overlay-head"><h2 id="overlayTitle">Inventário</h2><button id="overlayClose" class="game-btn">✕ Fechar (Esc)</button></div><div class="overlay-body" id="overlayBody"></div></div></div>
-<input id="importFile" class="hidden" type="file" accept=".json,application/json" aria-label="Importar salvamento"><div id="modal" class="hidden"><div class="modal-card"><div class="flower" id="modalFlower">🌱</div><div class="eyebrow" id="modalEyebrow">CAPÍTULO I</div><h2 id="modalTitle">A primeira semente</h2><p id="modalText">Tudo pode começar de novo.</p><div class="modal-actions"><button class="primary" id="modalContinue">COMEÇAR A JORNADA</button></div></div></div><script>(()=>{'use strict';const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
+<input id="importFile" class="hidden" type="file" accept=".json,application/json" aria-label="Importar salvamento"><div id="modal" class="hidden"><div class="modal-card"><div class="flower" id="modalFlower">🌱</div><div class="eyebrow" id="modalEyebrow">CAPÍTULO I</div><h2 id="modalTitle">A primeira semente</h2><p id="modalText">Tudo pode começar de novo.</p><div class="modal-actions"><button class="primary" id="modalContinue">COMEÇAR A JORNADA</button></div></div></div><script src="./assets/sprites/v08/hd-sprites.js"></script><script>(()=>{'use strict';const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
 const opts={name:'Viajante',skin:2,hairStyle:0,hair:0,outfit:0,trait:0};
 const skins=['#f5d6ad','#dfaa83','#b87954','#83543e','#4c302a'];
 const hairs=['#382d27','#895436','#e8bc6e','#ab6a67','#d5c8b0','#353f53'];
@@ -1070,7 +1070,7 @@ $('#mobileInteract').onclick=()=>interact();
 window.addEventListener('keydown',e=>{if(!s||!$('#creator').classList.contains('hidden')||gamePause)return;if(e.key.toLowerCase()==='j'){e.preventDefault();if(overlay?.type==='story')closeOverlay();else openOverlay('story')}});
 exportSave=function(){if(!s)return;save();const json=JSON.stringify(s,null,2),url=URL.createObjectURL(new Blob([json],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='flores-progresso-v04.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),800);say('Progresso exportado. Guarde o JSON para futuras versões.');};
 const previousImportSaved=importSaved;
-importSaved=function(e){const f=e.target.files?.[0];if(!f)return;const reader=new FileReader();reader.onload=()=>{try{const d=upgradeStorySave(JSON.parse(reader.result));if(!Array.isArray(d.inv)||!d.terrain||!Array.isArray(d.buildings))throw Error('Salvamento inválido');startGame(d);save();say('Save importado! A versão anterior foi preservada.')}catch(err){alert('Não foi possível ler esse save. Aceitos: saves exportados das versões v0.3 a v0.7.')}e.target.value='';};reader.readAsText(f)};
+importSaved=function(e){const f=e.target.files?.[0];if(!f)return;const reader=new FileReader();reader.onload=()=>{try{const d=upgradeStorySave(JSON.parse(reader.result));if(!Array.isArray(d.inv)||!d.terrain||!Array.isArray(d.buildings))throw Error('Salvamento inválido');startGame(d);save();say('Save importado! A versão anterior foi preservada.')}catch(err){alert('Não foi possível ler esse save. Aceitos: saves exportados das versões v0.3 a v0.8.')}e.target.value='';};reader.readAsText(f)};
 // Reatribuímos listeners que já haviam sido vinculados às funções anteriores.
 $('#exportButton').onclick=()=>exportSave();
 $('#importFile').removeEventListener('change',previousImportSaved);
@@ -1781,7 +1781,7 @@ renderUI=function(){preRenderV06();if(!s)return;
  $('#hudQuestAction').textContent=$('#questAction').textContent;
  $('#hudRiver').textContent=`🌊 ${s.waterSources?.filter(Boolean).length||0}/2 nascentes`;
 };
-// Compatibilidade: novos campos ficam opcionais em saves v0.5; novo slot local em v0.7.
+// Compatibilidade: novos campos ficam opcionais em saves v0.5; novo slot local em v0.8.
 function migrateV06(){if(!s)return;
  s.version=6;s.poisonTime??=0;s.poisonTick??=0;
  for(const b of s.buildings){if(b.type==='barn'){b.feedStock??=0;b.waterStock??=0;}
@@ -1802,7 +1802,7 @@ savedData=function(){try{const raw=localStorage.getItem('aqafc_v06_save');if(raw
 const oldStartV06=startGame;
 startGame=function(loaded=false){oldStartV06(loaded);if(s){migrateV06();renderUI()}};
 exportSave=function(){if(!s)return;save();const blob=new Blob([JSON.stringify(s,null,2)],{type:'application/json'});
- const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='flores-progresso-v06.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);say('💾 Save da v0.7 exportado.')};
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='flores-progresso-v06.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);say('💾 Save da v0.8 exportado.')};
 $('#exportButton').onclick=()=>exportSave();
 // Layout de tela única: métricas são REALOCADAS, mantendo os IDs que a interface atualiza.
 const shell=$('.canvaswrap');
@@ -1815,7 +1815,7 @@ const tutorial=document.createElement('div');tutorial.id='tutorialBubble';tutori
 $('#tutorialGot').onclick=()=>{const m=tutorialMilestone();if(m){tutorialDismissed[m[0]]=true;save();}tutorial.classList.add('hidden')};
 const topHelp=document.createElement('button');topHelp.id='quickHelp';topHelp.title='Controles (Esc)';topHelp.textContent='? CONTROLES · ESC';$('.top-stat').prepend(topHelp);topHelp.onclick=()=>openOverlay('controls');
 const quickMobile=document.createElement('button');quickMobile.className='touch action';quickMobile.id='mobileHelp';quickMobile.textContent='? AJUDA';$('.mobile-actions').appendChild(quickMobile);quickMobile.onclick=()=>openOverlay('controls');
-const originalBrand=$('.brand small');originalBrand.textContent='Sobrevivência · v0.7';
+const originalBrand=$('.brand small');originalBrand.textContent='Sobrevivência · v0.8';
 // Conversão de coordenadas para o enquadramento vertical do celular (corte central sem distorção).
 const originalPointerTileV06=tileFromPointer;
 tileFromPointer=function(e){
@@ -2011,7 +2011,7 @@ spritePerson=function(c,cx,feet,custom,dir='down',walk=0,zoom=2){
  }
 };
 
-v07TileConceptUnused=function(x,y,sx,sy){
+const v07TileConceptUnused=function(x,y,sx,sy){
  const t=worldTile(x,y),h=hash(x,y,9);
  let col=soilColor(x,y),top=v07Shade(col,18),side=v07Shade(col,-14);
  if(t?.kind==='soil'){col=t.moisture>15?'#8a6845':'#a67c52';top=v07Shade(col,18);side=v07Shade(col,-18)}
@@ -2106,7 +2106,7 @@ v07Style.textContent=`.durline{display:block;position:absolute;left:6px;right:6p
 document.head.appendChild(v07Style);
 
 // labels da versão
-try{$('.brand small').textContent='Sobrevivência low-poly · v0.7';document.querySelector('#creator .tag').textContent='sobrevivência · v0.7'}catch(err){}
+try{$('.brand small').textContent='Sobrevivência low-poly · v0.8';document.querySelector('#creator .tag').textContent='sobrevivência · v0.8'}catch(err){}
 
 // ajuda inicial levemente atualizada
 const v07ModalBase=$('#modalContinue').onclick;
@@ -2114,6 +2114,128 @@ $('#modalContinue').onclick=()=>{if(typeof v07ModalBase==='function')v07ModalBas
 
 v07NormalizeAll();
 setTimeout(()=>{try{refreshCreator();renderUI()}catch(err){}},0);
+
+// V0.8 – aplicação do atlas HD (raster aprovado + SVG vetorial escalável).
+// Mantém todas as regras de jogo anteriores e o rio sequencial da v0.6.
+const HD=window.FloresHD;
+if(HD){
+ const ASSET_BASE='./assets/sprites/v08/', hdAtlas=new Image();
+ hdAtlas.src=ASSET_BASE+'characters_atlas.webp';
+ const HD_KEYS=['player_front','player_side','player_back','iris','boar','hyena','scorpion','owl','armadillo','bear','chicken','goat','sheep','cow','alpaca','merchant'];
+ const animNames=['alpaca_andar','alpaca_comer','cabra_andar','cabra_comer','coruja_mergulho','coruja_voar','escorpiao_andar','escorpiao_ataque','galinha_andar','galinha_comer','hiena_andar','hiena_mordida','iris_andar','javali_andar','javali_investida','jogador_andar','jogador_cavar','ovelha_andar','ovelha_comer','tatu_andar','tatu_rolar','timber_andar','urso_andar','urso_golpe','vaca_andar','vaca_comer'];
+ const animations={};
+ for(const name of animNames){const im=new Image();im.src=ASSET_BASE+'animations/'+name+'.webp';animations[name]=im;}
+ let loadedCount=0;
+ const loaded=im=>im?.complete&&im.naturalWidth>0;
+ function atlasDraw(key,x,y,w,h,cv=ctx){const i=HD_KEYS.indexOf(key);if(i<0||!loaded(hdAtlas))return false;cv.save();cv.imageSmoothingEnabled=true;cv.imageSmoothingQuality='high';cv.drawImage(hdAtlas,(i%4)*384,Math.floor(i/4)*384,384,384,x,y,w,h);cv.restore();return true;}
+ function animDraw(key,x,y,w,h,t,cv=ctx,fps=5){const im=animations[key];if(!loaded(im))return false;const frame=(Math.floor((t||0)*fps)%4+4)%4;cv.save();cv.imageSmoothingEnabled=true;cv.imageSmoothingQuality='high';cv.drawImage(im,frame*(im.width/4),0,im.width/4,im.height,x,y,w,h);cv.restore();return true;}
+ function hdDraw(key,x,y,w,h,opts={},cv=ctx){return HD.draw(cv,key,x,y,w,h,opts);}
+ hdAtlas.onload=()=>{if($('#creator')&&!$('#creator').classList.contains('hidden'))refreshCreator();if(s)renderUI()};
+ const previousPersonHD=spritePerson;
+ spritePerson=function(cv,cx,feet,custom,dir='down',walk=0,zoom=2){
+  if(!custom)return previousPersonHD(cv,cx,feet,custom,dir,walk,zoom);
+  const w=42*zoom,h=50*zoom,x=cx-w/2,y=feet-h;
+  const normalHat=(custom.hat||0)===2,normalOutfit=custom.outfit===2,normalSkin=custom.skin===2,normalHair=custom.hair===0;
+  const standard=normalHat&&normalOutfit&&normalSkin&&normalHair&&custom.hairStyle===0;
+  let done=false;
+  if(standard){
+    if(walk&&dir!=='up')done=animDraw('jogador_andar',x,y,w,h,walk/12,cv,8);
+    if(!done)done=atlasDraw(dir==='up'?'player_back':dir==='left'||dir==='right'?'player_side':'player_front',x,y,w,h,cv);
+  }
+  if(!done){const opt={skin:skins[custom.skin]||skins[2],hair:hairs[custom.hair]||hairs[0],outfit:outfits[custom.outfit]||outfits[2],hat:custom.hat??2};
+   done=hdDraw('player',x,y,w,h,opt,cv);
+  }
+  if(!done)previousPersonHD(cv,cx,feet,custom,dir,walk,zoom);
+ };
+ const oldAtlasDraw=drawSpriteAtlas;
+ drawSpriteAtlas=function(kind,x,y,w=62,h=62){
+   const map={iris:'iris',enemyBoar:'boar',enemyHyena:'hyena',enemyScorpion:'scorpion',enemyOwl:'owl',enemyArmadillo:'armadillo',enemyBear:'bear',farmChicken:'chicken',farmGoat:'goat',farmSheep:'sheep',farmCow:'cow',farmAlpaca:'alpaca'};
+   const a=map[kind];if(a&&atlasDraw(a,x,y,w,h))return true;
+   if(a&&hdDraw(a,x,y,w,h))return true;
+   return oldAtlasDraw(kind,x,y,w,h);
+ };
+ const oldDrawNodeHD=drawNode;
+ drawNode=function(n,t){if(!n?.available)return;const p=screen(n.x,n.y),bob=(n.type==='seed'||n.type==='rareSeed')?Math.sin(t*2)*1.5:0;
+  const w=['wood','ancientRoot','oreVein'].includes(n.type)?57:46,h=w;
+  if(!hdDraw(n.type,p.x+16-w/2,p.y+30-h+bob,w,h))oldDrawNodeHD(n,t);
+ };
+ const oldDrawAnimalHD=drawAnimal;
+ drawAnimal=function(a,t){if(!a.alive)return;const k={chicken:'galinha',goat:'cabra',sheep:'ovelha',cow:'vaca',alpaca:'alpaca'}[a.type];
+  const p=screen(a.x,a.y),w=a.type==='cow'?84:a.type==='alpaca'?83:72,h=w;const state=(a.hunger<45&&Math.sin(t*1.3+a.drift)>0)?'comer':'andar';
+  const ok=animDraw(k+'_'+state,p.x-w/2,p.y-h*.88,w,h,t+a.drift,ctx,4)||atlasDraw(a.type,p.x-w/2,p.y-h*.88,w,h)||hdDraw(a.type,p.x-w/2,p.y-h*.88,w,h);
+  if(!ok)oldDrawAnimalHD(a,t);
+  if(a.ready){ctx.fillStyle='#fff1a8';ctx.font='bold 20px sans-serif';ctx.fillText('✦',p.x,p.y-h*.8-7)}
+  if(a.hunger<25||a.thirst<25){ctx.fillStyle='#ffe4a8';ctx.font='bold 20px sans-serif';ctx.fillText('!',p.x,p.y-h*.8-8)}
+ };
+ const oldDrawEnemyHD=drawEnemy;
+ drawEnemy=function(e,t){const k={boar:'javali',hyena:'hiena',scorpion:'escorpiao',owl:'coruja',armadillo:'tatu',bear:'urso'}[e.type],def=ENEMIES[e.type],p=screen(e.x,e.y),z=def.size||1;
+  const w=76*z,h=76*z,x=p.x-w/2,y=p.y-h*.88+Math.sin(t*5+e.seed)*1.7;
+  const isAttack=e.ai==='windup'||e.ai==='rush'||e.ai==='strike'||e.ai==='attack';
+  const act={javali:'investida',hiena:'mordida',escorpiao:'ataque',coruja:'mergulho',tatu:'rolar',urso:'golpe'}[k];
+  const key=k+'_'+(isAttack?act:k==='coruja'?'voar':'andar');
+  const ok=animDraw(key,x,y,w,h,t+e.seed,ctx,isAttack?7:5)||atlasDraw(e.type,x,y,w,h)||hdDraw(e.type,x,y,w,h);
+  if(!ok)oldDrawEnemyHD(e,t);
+  else{
+    if(e.flash>0){ctx.fillStyle='#fff1c45e';ctx.fillRect(x+7,y+8,w-14,h-13)}
+    ctx.fillStyle='#3c3026';ctx.fillRect(p.x-24,y-11,48,5);ctx.fillStyle='#df816b';ctx.fillRect(p.x-23,y-10,46*Math.max(0,e.hp/e.maxHp),3);
+    if(e.ai==='windup'){ctx.fillStyle='#ffe0a0';ctx.font='bold 15px sans-serif';ctx.textAlign='center';ctx.fillText('!',p.x,y-15)}
+  }
+ };
+ const oldBuildingHD=drawHouseLike;
+ drawHouseLike=function(x,y,b){
+  if(b.type==='gate'&&b.open){oldBuildingHD(x,y,b);return}
+  const w=b.w*T+30,h=b.h*T+54;
+  if(!hdDraw(b.type,x-15,y-36,w,h)){oldBuildingHD(x,y,b);return}
+  if(b.hp<10){ctx.fillStyle='#4b3024';ctx.fillRect(x,y-23,b.w*T,5);ctx.fillStyle='#cb785b';ctx.fillRect(x,y-23,b.w*T*Math.max(0,b.hp/20),5)}
+  if(b.out?.length){ctx.fillStyle='#f8e4ad';ctx.font='bold 20px sans-serif';ctx.fillText('!',x+b.w*T/2,y-31)}
+ };
+ const oldWellHD=drawWell;
+ drawWell=function(){const p=screen(24,19);if(!hdDraw('well',p.x-33,p.y-56,105,104)){oldWellHD();return}if(s.well){ctx.fillStyle='#95dce2';ctx.fillRect(p.x+2,p.y+4,31,5)}};
+ const oldCampHD=drawCamp;
+ drawCamp=function(){const p=screen(31,19);if(!hdDraw('camp',p.x-52,p.y-69,118,113))oldCampHD()};
+ const oldTraderHD=drawTrader;
+ drawTrader=function(t){if(!merchantActive()){oldTraderHD(t);return}const p=screen(37,22);if(!atlasDraw('merchant',p.x-25,p.y-68,81,85))oldTraderHD(t)};
+ const oldAltarHD=drawAltar;
+ drawAltar=function(t){const p=screen(48,17);if(!hdDraw('altar',p.x-28,p.y-65,92,95)){oldAltarHD(t);return}if(s.bloom){ctx.save();ctx.translate(p.x+16,p.y-34);ctx.scale(1.25,1.25);drawGiantFlower(0,0,t);ctx.restore()}};
+ const oldDrawCropHD=drawCrop;
+ drawCrop=function(x,y,t){if(!t?.seed)return;const p=screen(x,y),ratio=Math.min(1,t.age/cropTime(t.seed)),stage=ratio<.18?0:ratio<.48?1:ratio<.85?2:3,w=t.seed==='treeSeed'?78:45,h=w;
+  if(!hdDraw('crop:'+stage,p.x+16-w/2,p.y+28-h,w,h,{seed:t.seed}))oldDrawCropHD(x,y,t);
+ };
+ const oldTileHD=drawTile;
+ drawTile=function(x,y,sx,sy){
+  const r=riverCheck(x+.5,y+.5),tt=worldTile(x,y);
+  if(r?.dist<1.65&&tt?.kind!=='soil'){oldTileHD(x,y,sx,sy);return}
+  const name=tt?.kind==='soil'?(tt.moisture>15?'wet':'soil'):(s.bloom||s.greens?.[tileKey(x,y)]?'grass':'sand');
+  if(!hdDraw('tile:'+name,sx,sy,32,32))oldTileHD(x,y,sx,sy);
+ };
+ const oldDecorationHD=drawDecoration;
+ drawDecoration=function(t){
+  let x0=Math.floor(cam.x/T)-2,y0=Math.floor(cam.y/T)-2,x1=Math.ceil((cam.x+VW)/T)+2,y1=Math.ceil((cam.y+VH)/T)+2;
+  for(let y=Math.max(3,y0);y<Math.min(MAPH-3,y1);y++)for(let x=Math.max(3,x0);x<Math.min(MAPW-3,x1);x++){
+   if(fixedHere(x+.5,y+.5)||worldTile(x,y)?.kind==='soil'||buildingAt(x+.5,y+.5))continue;
+   const hasNode=s.nodes?.some(n=>n.available&&n.x===x&&n.y===y);if(hasNode)continue;
+   let p=screen(x,y),r=permanentTreeAt(x,y),rate=r?treeGrowth(r):0;
+   if(r&&rate>0){const stage=rate<.2?1:rate<.52?2:rate<.85?3:4,w=stage>=3?98:66,h=stage>=3?112:74;
+    hdDraw('tree:'+Math.min(stage,4),p.x+16-w/2,p.y+30-h,w,h);continue}
+   const n=hash(x,y,75),green=s.bloom||!!s.greens?.[tileKey(x,y)];
+   if(n>(green?.971:.994)){const stage=green?2:0,w=green?69:54,h=green?80:66;hdDraw('tree:'+stage,p.x+16-w/2,p.y+31-h,w,h)}
+  }
+ };
+ // Ícones HD nas barras e no inventário (mantém emojis de texto/diálogo onde ajudam).
+ const cacheUri=new Map();function icon(id){if(!cacheUri.has(id))cacheUri.set(id,HD.uri('item:'+id));return cacheUri.get(id)}
+ const decorateSlots=(buttons,items)=>buttons.forEach((b,i)=>{const st=items?.[i],target=b.querySelector('.ico');if(!target||!st)return;target.innerHTML='<img class="hd-item-icon" alt="" src="'+icon(st.id)+'">'});
+ const oldUIHD=renderUI;
+ renderUI=function(){oldUIHD();if(!s)return;decorateSlots([...document.querySelectorAll('#hotbar .hot-slot')],s.inv.slice(0,8))};
+ const oldOverlayHD=drawOverlay;
+ drawOverlay=function(){oldOverlayHD();if(!overlay||!['inventory','chest'].includes(overlay.type))return;const grids=[...document.querySelectorAll('#overlayBody .invgrid')];if(grids[0])decorateSlots([...grids[0].querySelectorAll('.invslot')],s.inv);
+  if(grids[1]&&overlay.type==='chest')decorateSlots([...grids[1].querySelectorAll('.invslot')],s.chests?.[overlay.chestId]||[]);
+ };
+ const style=document.createElement('style');style.textContent='.hd-item-icon{display:inline-block;width:31px;height:31px;object-fit:contain;vertical-align:middle;filter:drop-shadow(0 1px 1px #342c2233)}.hot-slot .hd-item-icon{width:35px;height:35px}';document.head.appendChild(style);
+ try{$('.brand small').textContent='Sprites HD • v0.8';document.querySelector('#creator .tag').textContent='novo visual • v0.8';}catch(_){}
+ if(!savedData()){opts.hat=2;opts.outfit=2;}
+ setTimeout(()=>{try{refreshCreator();if(s)renderUI()}catch(err){console.warn('HD sprites ready:',err)}},250);
+ window.__floresHD={atlas:hdAtlas,animations,drawSprite:atlasDraw,vector:HD,version:'0.8',preloaded:()=>loaded(hdAtlas)};
+}
 
 $('#continueButton').classList.toggle('hidden',!savedData());
 })();</script></body></html>
