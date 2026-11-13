@@ -1,0 +1,345 @@
+{
+  "version": "0.8",
+  "style": "low-poly retro 3D",
+  "sprite_size": [
+    384,
+    384
+  ],
+  "source": "approved transparent character concept sheet",
+  "sprites": {
+    "player_front": {
+      "row": 0,
+      "col": 0,
+      "size": 384,
+      "image": "characters/player_front.png"
+    },
+    "player_side": {
+      "row": 0,
+      "col": 1,
+      "size": 384,
+      "image": "characters/player_side.png"
+    },
+    "player_back": {
+      "row": 0,
+      "col": 2,
+      "size": 384,
+      "image": "characters/player_back.png"
+    },
+    "iris": {
+      "row": 0,
+      "col": 3,
+      "size": 384,
+      "image": "characters/iris.png"
+    },
+    "boar": {
+      "row": 1,
+      "col": 0,
+      "size": 384,
+      "image": "characters/boar.png"
+    },
+    "hyena": {
+      "row": 1,
+      "col": 1,
+      "size": 384,
+      "image": "characters/hyena.png"
+    },
+    "scorpion": {
+      "row": 1,
+      "col": 2,
+      "size": 384,
+      "image": "characters/scorpion.png"
+    },
+    "owl": {
+      "row": 1,
+      "col": 3,
+      "size": 384,
+      "image": "characters/owl.png"
+    },
+    "armadillo": {
+      "row": 2,
+      "col": 0,
+      "size": 384,
+      "image": "characters/armadillo.png"
+    },
+    "bear": {
+      "row": 2,
+      "col": 1,
+      "size": 384,
+      "image": "characters/bear.png"
+    },
+    "chicken": {
+      "row": 2,
+      "col": 2,
+      "size": 384,
+      "image": "characters/chicken.png"
+    },
+    "goat": {
+      "row": 2,
+      "col": 3,
+      "size": 384,
+      "image": "characters/goat.png"
+    },
+    "sheep": {
+      "row": 3,
+      "col": 0,
+      "size": 384,
+      "image": "characters/sheep.png"
+    },
+    "cow": {
+      "row": 3,
+      "col": 1,
+      "size": 384,
+      "image": "characters/cow.png"
+    },
+    "alpaca": {
+      "row": 3,
+      "col": 2,
+      "size": 384,
+      "image": "characters/alpaca.png"
+    },
+    "merchant": {
+      "row": 3,
+      "col": 3,
+      "size": 384,
+      "image": "characters/merchant.png"
+    },
+    "_atlas": "characters_atlas.webp"
+  },
+  "animation_sets": [
+    {
+      "name": "jogador_andar",
+      "group": "personagens",
+      "frames": 4,
+      "frame_width": 320,
+      "frame_height": 320,
+      "frame_duration_ms": 165,
+      "png": "animations/jogador_andar.webp"
+    },
+    {
+      "name": "iris_andar",
+      "group": "personagens",
+      "frames": 4,
+      "frame_width": 320,
+      "frame_height": 320,
+      "frame_duration_ms": 190,
+      "png": "animations/iris_andar.webp"
+    },
+    {
+      "name": "timber_andar",
+      "group": "personagens",
+      "frames": 4,
+      "frame_width": 320,
+      "frame_height": 320,
+      "frame_duration_ms": 210,
+      "png": "animations/timber_andar.webp"
+    },
+    {
+      "name": "jogador_cavar",
+      "group": "personagens",
+      "frames": 4,
+      "frame_width": 320,
+      "frame_height": 320,
+      "frame_duration_ms": 220,
+      "png": "animations/jogador_cavar.webp"
+    },
+    {
+      "name": "galinha_andar",
+      "group": "fazenda",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 180,
+      "png": "animations/galinha_andar.webp"
+    },
+    {
+      "name": "vaca_andar",
+      "group": "fazenda",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 180,
+      "png": "animations/vaca_andar.webp"
+    },
+    {
+      "name": "ovelha_andar",
+      "group": "fazenda",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 180,
+      "png": "animations/ovelha_andar.webp"
+    },
+    {
+      "name": "cabra_andar",
+      "group": "fazenda",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 180,
+      "png": "animations/cabra_andar.webp"
+    },
+    {
+      "name": "alpaca_andar",
+      "group": "fazenda",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 180,
+      "png": "animations/alpaca_andar.webp"
+    },
+    {
+      "name": "galinha_comer",
+      "group": "fazenda",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 180,
+      "png": "animations/galinha_comer.webp"
+    },
+    {
+      "name": "vaca_comer",
+      "group": "fazenda",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 180,
+      "png": "animations/vaca_comer.webp"
+    },
+    {
+      "name": "ovelha_comer",
+      "group": "fazenda",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 180,
+      "png": "animations/ovelha_comer.webp"
+    },
+    {
+      "name": "cabra_comer",
+      "group": "fazenda",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 180,
+      "png": "animations/cabra_comer.webp"
+    },
+    {
+      "name": "alpaca_comer",
+      "group": "fazenda",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 180,
+      "png": "animations/alpaca_comer.webp"
+    },
+    {
+      "name": "javali_andar",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/javali_andar.webp"
+    },
+    {
+      "name": "hiena_andar",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/hiena_andar.webp"
+    },
+    {
+      "name": "escorpiao_andar",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/escorpiao_andar.webp"
+    },
+    {
+      "name": "coruja_voar",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/coruja_voar.webp"
+    },
+    {
+      "name": "tatu_andar",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/tatu_andar.webp"
+    },
+    {
+      "name": "urso_andar",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/urso_andar.webp"
+    },
+    {
+      "name": "javali_investida",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/javali_investida.webp"
+    },
+    {
+      "name": "hiena_mordida",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/hiena_mordida.webp"
+    },
+    {
+      "name": "escorpiao_ataque",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/escorpiao_ataque.webp"
+    },
+    {
+      "name": "coruja_mergulho",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/coruja_mergulho.webp"
+    },
+    {
+      "name": "tatu_rolar",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/tatu_rolar.webp"
+    },
+    {
+      "name": "urso_golpe",
+      "group": "inimigos",
+      "frames": 4,
+      "frame_width": 256,
+      "frame_height": 256,
+      "frame_duration_ms": 135,
+      "png": "animations/urso_golpe.webp"
+    }
+  ],
+  "format": "WEBP"
+}
