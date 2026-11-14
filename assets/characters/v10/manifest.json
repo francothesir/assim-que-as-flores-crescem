@@ -1,0 +1,228 @@
+{
+  "version": "1.0",
+  "logical_cell": [
+    192,
+    256
+  ],
+  "cell": [
+    384,
+    512
+  ],
+  "directions": [
+    "down",
+    "right",
+    "up"
+  ],
+  "layers": {
+    "body": {
+      "count": 7,
+      "cols": 7,
+      "rows": 1,
+      "cell": [
+        384,
+        512
+      ],
+      "paths": {
+        "down": "atlases/body/down.webp",
+        "right": "atlases/body/right.webp",
+        "up": "atlases/body/up.webp"
+      }
+    },
+    "eyes": {
+      "count": 6,
+      "cols": 6,
+      "rows": 1,
+      "cell": [
+        384,
+        512
+      ],
+      "paths": {
+        "down": "atlases/eyes/down.webp",
+        "right": "atlases/eyes/right.webp",
+        "up": "atlases/eyes/up.webp"
+      }
+    },
+    "nose": {
+      "count": 6,
+      "cols": 6,
+      "rows": 1,
+      "cell": [
+        384,
+        512
+      ],
+      "paths": {
+        "down": "atlases/nose/down.webp",
+        "right": "atlases/nose/right.webp",
+        "up": "atlases/nose/up.webp"
+      }
+    },
+    "hair": {
+      "count": 56,
+      "cols": 8,
+      "rows": 7,
+      "cell": [
+        384,
+        512
+      ],
+      "paths": {
+        "down": "atlases/hair/down.webp",
+        "right": "atlases/hair/right.webp",
+        "up": "atlases/hair/up.webp"
+      }
+    },
+    "outfit": {
+      "count": 48,
+      "cols": 8,
+      "rows": 6,
+      "cell": [
+        384,
+        512
+      ],
+      "paths": {
+        "down": "atlases/outfit/down.webp",
+        "right": "atlases/outfit/right.webp",
+        "up": "atlases/outfit/up.webp"
+      }
+    },
+    "hat": {
+      "count": 8,
+      "cols": 8,
+      "rows": 1,
+      "cell": [
+        384,
+        512
+      ],
+      "paths": {
+        "down": "atlases/hat/down.webp",
+        "right": "atlases/hat/right.webp",
+        "up": "atlases/hat/up.webp"
+      }
+    },
+    "shoes": {
+      "count": 5,
+      "cols": 5,
+      "rows": 1,
+      "cell": [
+        384,
+        512
+      ],
+      "paths": {
+        "down": "atlases/shoes/down.webp",
+        "right": "atlases/shoes/right.webp",
+        "up": "atlases/shoes/up.webp"
+      }
+    },
+    "accessory": {
+      "count": 5,
+      "cols": 5,
+      "rows": 1,
+      "cell": [
+        384,
+        512
+      ],
+      "paths": {
+        "down": "atlases/accessory/down.webp",
+        "right": "atlases/accessory/right.webp",
+        "up": "atlases/accessory/up.webp"
+      }
+    }
+  },
+  "palette": {
+    "skin": [
+      "#f5d6ad",
+      "#dfaa83",
+      "#b87954",
+      "#83543e",
+      "#4c302a",
+      "#ffe6d2",
+      "#a77352"
+    ],
+    "hair": [
+      "#382d27",
+      "#895436",
+      "#e8bc6e",
+      "#ab6a67",
+      "#d5c8b0",
+      "#353f53",
+      "#b7b5b6"
+    ],
+    "outfit": [
+      "#617d61",
+      "#ad7c60",
+      "#667b99",
+      "#b77794",
+      "#a99455",
+      "#685989"
+    ],
+    "hat": [
+      "#d5ad55",
+      "#c76c50",
+      "#617c9e",
+      "#8e719c",
+      "#608262",
+      "#5f534b"
+    ]
+  },
+  "styles": {
+    "hair": [
+      "Espetado",
+      "Lateral",
+      "Cacheado",
+      "Franja reta",
+      "Longo",
+      "Tranças",
+      "Rabo de cavalo",
+      "Punk"
+    ],
+    "eyes": [
+      "Oval",
+      "Grandes",
+      "Sonolentos",
+      "Felizes",
+      "Determinados",
+      "Clássicos"
+    ],
+    "nose": [
+      "Sem nariz",
+      "Pequeno",
+      "Triangular",
+      "Arredondado",
+      "Longo",
+      "Pontudo"
+    ],
+    "outfit": [
+      "Jardineira",
+      "Explorador",
+      "Poncho",
+      "Moletom",
+      "Jaleco",
+      "Armadura leve",
+      "Túnica",
+      "Social"
+    ],
+    "hat": [
+      "Sem chapéu",
+      "Palha",
+      "Boné",
+      "Gorro",
+      "Aventureiro",
+      "Capuz",
+      "Coroa de folhas",
+      "Mago"
+    ],
+    "shoes": [
+      "Couro",
+      "Pretos",
+      "Areia",
+      "Azuis",
+      "Claros"
+    ],
+    "accessory": [
+      "Nenhum",
+      "Sardas",
+      "Óculos",
+      "Lenço",
+      "Bolsa"
+    ]
+  }
+}

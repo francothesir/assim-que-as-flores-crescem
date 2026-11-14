@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#233327"><title>Assim que as Flores Crescem — O cerco da floresta v0.9</title><style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#233327"><title>Assim que as Flores Crescem — Criador modular v1.0</title><style>
 :root{--paper:#f8f0d9;--ink:#40392b;--green:#49684b;--leaf:#759169;--line:#bdad90;--sand:#e3be86;--rose:#a36b88;--dark:#252b22}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#1f2721;color:var(--ink)}body{font-family:Trebuchet MS,Verdana,Arial,sans-serif}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #ddb45c;outline-offset:3px}
 .hidden{display:none!important}.pixel{image-rendering:pixelated}.screen{min-height:100vh}
@@ -119,7 +119,7 @@ html,body{height:100%;margin:0;overflow:hidden}
       <div class="eyebrow">UM JOGO SOBRE RECOMEÇAR · CAPÍTULO I</div>
       <h1>ASSIM QUE<br>AS FLORES<br>CRESCEM<span style="color:#d9c887">.</span></h1>
       <p>Todo jardim já foi deserto. Toda floresta já foi semente. Quem você será quando a primeira flor nascer?</p>
-      <div class="preview-wrap"><canvas id="avatarPreview" width="160" height="174" class="pixel"></canvas></div>
+      <div class="preview-wrap"><canvas id="avatarPreview" width="320" height="348"></canvas></div>
       <div class="bottom-mark"><span>✿ Crie seu jardineiro</span><span>Sobrevivência · v0.5</span></div>
     </div>
     <div class="creator-form">
@@ -161,7 +161,7 @@ html,body{height:100%;margin:0;overflow:hidden}
 <div class="divider"></div><div class="little-label">Lei do deserto</div><p class="journal">“A terra responde ao cuidado; a noite cobra o abandono.”</p></div></aside>
 </div><div class="world-guide">✿ O MAPA CRESCE COM VOCÊ · E COLETA RECURSOS · ESPAÇO USA A FERRAMENTA · CADA CLIQUE CONSTRÓI OU CANCELA ✿</div></div>
 <div id="overlay" class="hidden"><div class="overlay-window"><div class="overlay-head"><h2 id="overlayTitle">Inventário</h2><button id="overlayClose" class="game-btn">✕ Fechar (Esc)</button></div><div class="overlay-body" id="overlayBody"></div></div></div>
-<input id="importFile" class="hidden" type="file" accept=".json,application/json" aria-label="Importar salvamento"><div id="modal" class="hidden"><div class="modal-card"><div class="flower" id="modalFlower">🌱</div><div class="eyebrow" id="modalEyebrow">CAPÍTULO I</div><h2 id="modalTitle">A primeira semente</h2><p id="modalText">Tudo pode começar de novo.</p><div class="modal-actions"><button class="primary" id="modalContinue">COMEÇAR A JORNADA</button></div></div></div><script src="./assets/sprites/v08/hd-sprites.js"></script><script src="./assets/sprites/v09/hero-sprite.js"></script><script>(()=>{'use strict';const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
+<input id="importFile" class="hidden" type="file" accept=".json,application/json" aria-label="Importar salvamento"><div id="modal" class="hidden"><div class="modal-card"><div class="flower" id="modalFlower">🌱</div><div class="eyebrow" id="modalEyebrow">CAPÍTULO I</div><h2 id="modalTitle">A primeira semente</h2><p id="modalText">Tudo pode começar de novo.</p><div class="modal-actions"><button class="primary" id="modalContinue">COMEÇAR A JORNADA</button></div></div></div><script src="./assets/sprites/v08/hd-sprites.js"></script><script src="./assets/sprites/v09/hero-sprite.js"></script><script src="./assets/characters/v10/character-layers.js"></script><script>(()=>{'use strict';const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
 const opts={name:'Viajante',skin:2,hairStyle:0,hair:0,outfit:0,trait:0};
 const skins=['#f5d6ad','#dfaa83','#b87954','#83543e','#4c302a'];
 const hairs=['#382d27','#895436','#e8bc6e','#ab6a67','#d5c8b0','#353f53'];
@@ -2238,70 +2238,136 @@ if(HD){
 }
 
 
-/* V0.9 — corrigir kit inicial, save antigo e desgaste da pá. */
+// v0.9 · Correções de inventário e personagem (preserva progresso e rios).
 function v09GiveItem(id){
- if(s.inv.some(slot=>slot?.id===id))return;
- const max=(V07_BREAKABLE[id]||{max:36}).max;
- const entry={id,q:1,maxDurability:max,durability:max};
- let vacant=s.inv.findIndex(slot=>!slot);
- if(vacant>=0){s.inv[vacant]=entry;return}
- s.chests=s.chests||{};
- s.chests.base=s.chests.base||blankInventory(24);
- vacant=s.chests.base.findIndex(slot=>!slot);
- if(vacant>=0){s.chests.base[vacant]=entry;logEvent('Kit atualizado no baú: '+item(id)[1]);return}
- s.inv.push(entry);s.bagLevel=Math.max(s.bagLevel||0,2);
+  if(s.inv.some(slot=>slot?.id===id))return;
+  const max=(V07_BREAKABLE[id]||{max:36}).max;
+  const entry={id,q:1,maxDurability:max,durability:max};
+  let vacant=s.inv.findIndex(slot=>!slot);
+  if(vacant>=0){s.inv[vacant]=entry;return}
+  s.chests=s.chests||{};
+  s.chests.base=s.chests.base||blankInventory(24);
+  vacant=s.chests.base.findIndex(slot=>!slot);
+  if(vacant>=0){s.chests.base[vacant]=entry;logEvent(`🧰 ${item(id)[1]} enviado ao baú inicial por falta de espaço.`);return}
+  // Em saves com bolsa e baú cheios, conserva todos os itens e aumenta a capacidade.
+  s.inv.push(entry);s.bagLevel=Math.max(s.bagLevel||0,2);
 }
 function v09RepairEquipment(isLoaded){
- if(!s||!Array.isArray(s.inv))return;
- v07NormalizeAll();
- if(!s.v09StartingGearFixed){
-   v09GiveItem('can');
-   if(!s.inv.some(slot=>slot?.id==='spade'))v09GiveItem('spade');
-   s.v09StartingGearFixed=true;
-   if(isLoaded)logEvent('Kit inicial corrigido: regador e pá disponíveis.');
- }
- for(const container of [s.inv,...Object.values(s.chests||{})]){
-  if(!Array.isArray(container))continue;
-  for(const st of container){
-   if(st?.id!=='spade')continue;
-   const max=Math.max(1,Number(st.maxDurability)||16),remaining=Math.max(0,Number(st.durability??max));
-   if(max<36){st.maxDurability=36;st.durability=Math.max(1,Math.min(36,remaining+36-max));}
+  if(!s||!Array.isArray(s.inv))return;
+  v07NormalizeAll();
+  if(!s.v09StartingGearFixed){
+    v09GiveItem('can');
+    if(!s.inv.some(slot=>slot?.id==='spade'))v09GiveItem('spade');
+    s.v09StartingGearFixed=true;
+    if(isLoaded)logEvent('🪏 Kit inicial corrigido: regador e pá disponibilizados.');
   }
- }
- if(!isLoaded){
-  s.water=0;
-  const can=s.inv.findIndex(st=>st?.id==='can');
-  if(can>0)[s.inv[0],s.inv[can]]=[s.inv[can],s.inv[0]];
-  const spade=s.inv.findIndex(st=>st?.id==='spade');
-  if(spade>1)[s.inv[1],s.inv[spade]]=[s.inv[spade],s.inv[1]];
-  selected=0;
- }
+  for(const container of [s.inv,...Object.values(s.chests||{})]){
+    if(!Array.isArray(container))continue;
+    for(const slot of container){
+      if(slot?.id!=='spade')continue;
+      const max=Math.max(1,Number(slot.maxDurability)||16),remaining=Math.max(0,Number(slot.durability??max));
+      if(max<36){slot.maxDurability=36;slot.durability=Math.max(1,Math.min(36,remaining+(36-max)));}
+    }
+  }
+  if(!isLoaded){s.water=0;const can=s.inv.findIndex(slot=>slot?.id==='can'),spade=s.inv.findIndex(slot=>slot?.id==='spade');
+    if(can>0)[s.inv[0],s.inv[can]]=[s.inv[can],s.inv[0]];
+    const p=s.inv.findIndex(slot=>slot?.id==='spade');if(p>1)[s.inv[1],s.inv[p]]=[s.inv[p],s.inv[1]];
+    selected=0;
+  }
 }
-const v09PreviousInit=initNew;
-initNew=function(){v09PreviousInit();v09RepairEquipment(false)};
-const v09PreviousReset=resetForLoad;
+const v09PriorInit=initNew;
+initNew=function(){v09PriorInit();v09RepairEquipment(false)};
+const v09PriorReset=resetForLoad;
 resetForLoad=function(){
- // A compatibilidade de saves antigos exige versão 6 ao iniciar a migração.
- if(s?.version>=7)s.version=6;
- v09PreviousReset();v09RepairEquipment(true);
+  // Versões antigas alteravam o número do save antes da migração, causando tela vazia ao continuar.
+  if(s?.version>=7)s.version=6;
+  v09PriorReset();v09RepairEquipment(true);
 };
-const v09PreviousStart=startGame;
-startGame=function(loaded=false){v09PreviousStart(loaded);if(s){v09RepairEquipment(!!loaded);renderUI()}};
-const v09PreviousSave=save;
-save=function(){if(s){v09RepairEquipment(true);s.v09StartingGearFixed=true;}return v09PreviousSave()};
-const v09PreviousPerson=spritePerson;
+const v09PriorStart=startGame;
+startGame=function(loaded=false){v09PriorStart(loaded);if(s){v09RepairEquipment(!!loaded);renderUI();}};
+const v09PriorSave=save;
+save=function(){if(s){v09RepairEquipment(true);s.v09StartingGearFixed=true;}return v09PriorSave()};
+const v09PriorPerson=spritePerson;
 spritePerson=function(cv,cx,feet,custom,dir='down',walk=0,zoom=2){
- try{if(window.FloresHeroV09?.draw(cv,cx,feet,custom,dir,walk,zoom))return;}catch(err){console.warn('Sprite alternativo indisponível:',err)}
- return v09PreviousPerson(cv,cx,feet,custom,dir,walk,zoom);
+  try{if(window.FloresHeroV09?.draw(cv,cx,feet,custom,dir,walk,zoom))return;}catch(err){console.warn('Sprite alternativo indisponível:',err)}
+  return v09PriorPerson(cv,cx,feet,custom,dir,walk,zoom);
 };
-try{document.querySelector('.brand small').textContent='Sobrevivência • personagem renovado • v0.9';}catch(_){}
+try{$('.brand small').textContent='Sobrevivência • personagem renovado • v0.9';}catch(_){ }
 window.__floresV09QA={
- get state(){return s},
- equipment:()=>s?.inv?.filter(st=>['can','spade'].includes(st?.id)).map(st=>({id:st.id,durability:st.durability,max:st.maxDurability})),
- dig:(x,y)=>{const i=s.inv.findIndex(st=>st?.id==='spade');if(i<0)return false;selected=i;const before=s.stats.tilled;actUse({x,y});return s.stats.tilled>before},
- repair:()=>v09RepairEquipment(true),version:'0.9'
+  get state(){return s},
+  equipment:()=>s?.inv?.filter(x=>['can','spade'].includes(x?.id)).map(x=>({id:x.id,durability:x.durability,max:x.maxDurability})),
+  dig:(x,y)=>{let i=s.inv.findIndex(st=>st?.id==='spade');if(i<0)return false;selected=i;const before=s.stats.tilled;actUse({x,y});return s.stats.tilled>before},
+  save:()=>save(),repair:()=>v09RepairEquipment(true),version:'0.9'
 };
 setTimeout(()=>{try{refreshCreator();if(s)renderUI()}catch(_){}},0);
+
+
+// -------------------- v1.0 · CRIADOR MODULAR (camadas registradas) --------------------
+const originalPersonV10=spritePerson;
+spritePerson=function(c,cx,feet,custom,dir='down',walk=0,zoom=2){
+ try{if(window.FloresCharacterV10?.draw(c,cx,feet,custom,dir,walk,zoom))return;}catch(err){console.warn('Camadas v1.0:',err)}
+ return originalPersonV10(c,cx,feet,custom,dir,walk,zoom);
+};
+// Retrocompatibilidade: nomes originais e índices de opções antigas não são remapeados no save.
+for(const [key,def] of Object.entries({nose:1,eyes:1,outfitStyle:0,shoes:0,accessory:3})){
+ if(opts[key]===undefined)opts[key]=def;
+}
+const oldRefreshV10=refreshCreator;
+function v10StyleButton(text,field,index,swatch=null){
+ const b=document.createElement('button');b.type='button';b.className=swatch?'swatch':'style-option';b.title=text;
+ if(swatch){b.style.setProperty('--sw',swatch);b.setAttribute('aria-label',text)}else b.textContent=text;
+ b.onclick=()=>{opts[field]=index;refreshCreator()};return b;
+}
+function v10ExtraChoice(selector,entries,field,start){
+ const root=$(selector);if(!root)return;
+ entries.forEach((val,j)=>root.appendChild(v10StyleButton(val.text||val,field,j+start,val.color||null)));
+}
+v10ExtraChoice('#skinSwatches',[{text:'Pele clara rosada',color:'#ffe6d2'},{text:'Pele quente',color:'#a77352'}],'skin',5);
+v10ExtraChoice('#hairColors',[{text:'Prateado',color:'#b7b5b6'}],'hair',6);
+v10ExtraChoice('#hairStyles',['Lateral','Franja reta','Rabo de cavalo','Punk'],'hairStyle',4);
+v10ExtraChoice('#hatStyles',['Aventureiro','Coroa de folhas','Mago'],'hat',5);
+function v10InsertGroup(title,id,field,choices,beforeSelector){
+ const wrap=document.createElement('div');wrap.className='group v10-group';
+ wrap.innerHTML=`<label>${title}</label><div id="${id}" class="style-options v10-choice-grid"></div>`;
+ const reference=document.querySelector(beforeSelector);
+ if(reference?.closest('.group'))reference.closest('.group').before(wrap);
+ else $('#traits').closest('.group').before(wrap);
+ const root=wrap.querySelector('.style-options');
+ choices.forEach((name,i)=>root.appendChild(v10StyleButton(name,field,i)));
+ return wrap;
+}
+v10InsertGroup('Formato do nariz','v10Noses','nose',['Sem nariz','Discreto','Triangular','Arredondado','Comprido','Pontudo'],'#hairStyles');
+v10InsertGroup('Olhos','v10Eyes','eyes',['Grandes ovais','Expressivos','Sonolentos','Sorridentes','Determinados','Clássicos'],'#hairStyles');
+v10InsertGroup('Modelo da roupa','v10OutfitStyle','outfitStyle',['Jardineira','Explorador','Poncho','Moletom','Jaleco','Armadura','Túnica','Social'],'#outfitColors');
+v10InsertGroup('Calçado','v10Shoes','shoes',['Couro','Pretos','Areia','Azuis','Claros'],'#traits');
+v10InsertGroup('Acessórios','v10Accessories','accessory',['Nenhum','Sardas','Óculos','Lenço','Bolsa'],'#traits');
+refreshCreator=function(){
+ oldRefreshV10();
+ for(const [id,field] of [['v10Noses','nose'],['v10Eyes','eyes'],['v10OutfitStyle','outfitStyle'],['v10Shoes','shoes'],['v10Accessories','accessory']]){
+  const root=$('#'+id);if(!root)continue;
+  [...root.children].forEach((b,i)=>b.classList.toggle('selected',Number(opts[field])===i));
+ }
+};
+const originalRenderAvatarV10=renderAvatar;
+renderAvatar=function(){
+ av.setTransform(2,0,0,2,0,0);
+ av.clearRect(0,0,160,174);av.fillStyle='#ffffff16';av.fillRect(22,7,116,153);
+ av.fillStyle='#89996a33';av.beginPath();av.ellipse(80,157,45,6,0,0,Math.PI*2);av.fill();
+ spritePerson(av,80,164,opts,'down',0,2.72);
+};
+// Re-render once transparent atlases finish loading.
+document.addEventListener('flores-v10-ready',()=>{refreshCreator();if(s)renderUI()});
+// Helps avoid prior saved looks becoming stuck in earlier static sprite functions.
+const oldResetV10=resetForLoad;
+resetForLoad=function(){oldResetV10();if(s?.player){
+ for(const [k,v] of Object.entries({nose:1,eyes:1,outfitStyle:0,shoes:0,accessory:3}))if(s.player[k]===undefined)s.player[k]=v;
+ }};
+try{$('.brand small').textContent='Criador modular HD · v1.0';document.querySelector('.bottom-mark span:last-child').textContent='PERSONALIZE EM CAMADAS · v1.0'}catch(e){}
+const newStyleV10=document.createElement('style');
+newStyleV10.textContent=`#creator .creator-shell{min-height:640px}#creator .creator-form{max-height:min(830px,calc(100vh - 48px));overflow-y:auto;padding-right:32px;scrollbar-width:thin}.v10-choice-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.v10-choice-grid .style-option{min-height:38px;padding:7px 4px}#avatarPreview{image-rendering:auto!important}.style-option.selected,.swatch.selected{outline:2px solid #6a8a5a;outline-offset:1px}@media(max-width:740px){#creator .creator-form{max-height:none;overflow:visible;padding-right:18px}.v10-choice-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}`;
+document.head.appendChild(newStyleV10);
+refreshCreator();
+window.__floresV10QA={get state(){return s},get options(){return {...opts}},get assets(){return window.FloresCharacterV10?.stats},character:(c,p,dir='down',walk=0,z=2)=>window.FloresCharacterV10?.draw(c,80,170,p,dir,walk,z)};
 
 $('#continueButton').classList.toggle('hidden',!savedData());
 })();</script></body></html>
