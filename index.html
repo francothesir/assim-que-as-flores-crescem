@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#233327"><title>Assim que as Flores Crescem — O cerco da floresta v0.8</title><style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#233327"><title>Assim que as Flores Crescem — O cerco da floresta v0.9</title><style>
 :root{--paper:#f8f0d9;--ink:#40392b;--green:#49684b;--leaf:#759169;--line:#bdad90;--sand:#e3be86;--rose:#a36b88;--dark:#252b22}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#1f2721;color:var(--ink)}body{font-family:Trebuchet MS,Verdana,Arial,sans-serif}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #ddb45c;outline-offset:3px}
 .hidden{display:none!important}.pixel{image-rendering:pixelated}.screen{min-height:100vh}
@@ -161,7 +161,7 @@ html,body{height:100%;margin:0;overflow:hidden}
 <div class="divider"></div><div class="little-label">Lei do deserto</div><p class="journal">“A terra responde ao cuidado; a noite cobra o abandono.”</p></div></aside>
 </div><div class="world-guide">✿ O MAPA CRESCE COM VOCÊ · E COLETA RECURSOS · ESPAÇO USA A FERRAMENTA · CADA CLIQUE CONSTRÓI OU CANCELA ✿</div></div>
 <div id="overlay" class="hidden"><div class="overlay-window"><div class="overlay-head"><h2 id="overlayTitle">Inventário</h2><button id="overlayClose" class="game-btn">✕ Fechar (Esc)</button></div><div class="overlay-body" id="overlayBody"></div></div></div>
-<input id="importFile" class="hidden" type="file" accept=".json,application/json" aria-label="Importar salvamento"><div id="modal" class="hidden"><div class="modal-card"><div class="flower" id="modalFlower">🌱</div><div class="eyebrow" id="modalEyebrow">CAPÍTULO I</div><h2 id="modalTitle">A primeira semente</h2><p id="modalText">Tudo pode começar de novo.</p><div class="modal-actions"><button class="primary" id="modalContinue">COMEÇAR A JORNADA</button></div></div></div><script src="./assets/sprites/v08/hd-sprites.js"></script><script>(()=>{'use strict';const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
+<input id="importFile" class="hidden" type="file" accept=".json,application/json" aria-label="Importar salvamento"><div id="modal" class="hidden"><div class="modal-card"><div class="flower" id="modalFlower">🌱</div><div class="eyebrow" id="modalEyebrow">CAPÍTULO I</div><h2 id="modalTitle">A primeira semente</h2><p id="modalText">Tudo pode começar de novo.</p><div class="modal-actions"><button class="primary" id="modalContinue">COMEÇAR A JORNADA</button></div></div></div><script src="./assets/sprites/v08/hd-sprites.js"></script><script src="./assets/sprites/v09/hero-sprite.js"></script><script>(()=>{'use strict';const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
 const opts={name:'Viajante',skin:2,hairStyle:0,hair:0,outfit:0,trait:0};
 const skins=['#f5d6ad','#dfaa83','#b87954','#83543e','#4c302a'];
 const hairs=['#382d27','#895436','#e8bc6e','#ab6a67','#d5c8b0','#353f53'];
@@ -1164,14 +1164,14 @@ upgradeStorySave=function(state){
  state.spadeXP=Math.max(0,state.spadeXP||0);
  state.questsDone=state.questsDone||[];
  for(const st of state.inv||[]){if(st?.id==='spade'){
-  st.maxDurability=st.maxDurability||16;
+  st.maxDurability=st.maxDurability||36;
   st.durability=st.durability??st.maxDurability;
  }}
  return state;
 };
 const originalInitV5=initNew;
 initNew=function(){originalInitV5();s.version=5;s.waterSources=[false,false];s.riverUnlockedAt=[null,null];s.spadeXP=0;
- const sp=s.inv.find(st=>st?.id==='spade');if(sp){sp.maxDurability=16;sp.durability=16}
+ const sp=s.inv.find(st=>st?.id==='spade');if(sp){sp.maxDurability=36;sp.durability=36}
 };
 const originalResetV5=resetForLoad;
 resetForLoad=function(){upgradeStorySave(s);originalResetV5()};
@@ -1217,7 +1217,7 @@ makeCraft=function(id){
   originalMakeCraftV5(id);return;
  }
  originalMakeCraftV5(id);
- if(id==='spade')for(const st of s.inv){if(st?.id==='spade'&&st.durability==null){const lv=spadeLevel();st.maxDurability=18+lv*3;st.durability=st.maxDurability}}
+ if(id==='spade')for(const st of s.inv){if(st?.id==='spade'&&st.durability==null){const lv=spadeLevel();st.maxDurability=Math.max(36,18+lv*3);st.durability=st.maxDurability}}
 };
 // O menu de receitas conserva os demais desbloqueios e libera somente estas duas receitas.
 const originalDrawOverlayV5=drawOverlay;
@@ -1843,7 +1843,7 @@ window.__floresV05QA={get waterSources(){return s?.waterSources},get skill(){ret
 
 
 // ----------------------- V0.7 PATCH: quebrabilidade + estilo lowpoly -----------------------
-const V07_BREAKABLE={axe:{max:34},pick:{max:38},hoe:{max:26},spade:{max:26},can:{max:42},staff:{max:48},spear:{max:44},bow:{max:36},sword:{max:52},blade:{max:68}};
+const V07_BREAKABLE={axe:{max:34},pick:{max:38},hoe:{max:26},spade:{max:36},can:{max:42},staff:{max:48},spear:{max:44},bow:{max:36},sword:{max:52},blade:{max:68}};
 const V07_HATS=['Sem chapéu','Boné','Chapéu de palha','Gorro','Capuz'];
 const V07_HAT_COLORS=['#00000000','#73a1d9','#d2b16b','#8e72b1','#9b765e'];
 function v07Breakable(id){return !!V07_BREAKABLE[id]}
@@ -1942,7 +1942,7 @@ actUse=function(pos){
  const before={tilled:s.stats?.tilled||0,watered:s.stats?.watered||0,water:s.water,planted:s.stats?.planted||0,fed:s.stats?.fed||0};
  v07ActUseBase(pos);
  if(!id||!v07Breakable(id)||!s.inv[selected]||s.inv[selected].id!==id)return;
- if((id==='spade'||id==='hoe')&&(s.stats?.tilled||0)>before.tilled)v07WearAt(selected,1);
+ if(id==='hoe'&&(s.stats?.tilled||0)>before.tilled)v07WearAt(selected,1);
  else if(id==='can'&&((s.stats?.watered||0)>before.watered||s.water!==before.water))v07WearAt(selected,0.65,true);
  renderUI();
 };
@@ -2236,6 +2236,72 @@ if(HD){
  setTimeout(()=>{try{refreshCreator();if(s)renderUI()}catch(err){console.warn('HD sprites ready:',err)}},250);
  window.__floresHD={atlas:hdAtlas,animations,drawSprite:atlasDraw,vector:HD,version:'0.8',preloaded:()=>loaded(hdAtlas)};
 }
+
+
+/* V0.9 — corrigir kit inicial, save antigo e desgaste da pá. */
+function v09GiveItem(id){
+ if(s.inv.some(slot=>slot?.id===id))return;
+ const max=(V07_BREAKABLE[id]||{max:36}).max;
+ const entry={id,q:1,maxDurability:max,durability:max};
+ let vacant=s.inv.findIndex(slot=>!slot);
+ if(vacant>=0){s.inv[vacant]=entry;return}
+ s.chests=s.chests||{};
+ s.chests.base=s.chests.base||blankInventory(24);
+ vacant=s.chests.base.findIndex(slot=>!slot);
+ if(vacant>=0){s.chests.base[vacant]=entry;logEvent('Kit atualizado no baú: '+item(id)[1]);return}
+ s.inv.push(entry);s.bagLevel=Math.max(s.bagLevel||0,2);
+}
+function v09RepairEquipment(isLoaded){
+ if(!s||!Array.isArray(s.inv))return;
+ v07NormalizeAll();
+ if(!s.v09StartingGearFixed){
+   v09GiveItem('can');
+   if(!s.inv.some(slot=>slot?.id==='spade'))v09GiveItem('spade');
+   s.v09StartingGearFixed=true;
+   if(isLoaded)logEvent('Kit inicial corrigido: regador e pá disponíveis.');
+ }
+ for(const container of [s.inv,...Object.values(s.chests||{})]){
+  if(!Array.isArray(container))continue;
+  for(const st of container){
+   if(st?.id!=='spade')continue;
+   const max=Math.max(1,Number(st.maxDurability)||16),remaining=Math.max(0,Number(st.durability??max));
+   if(max<36){st.maxDurability=36;st.durability=Math.max(1,Math.min(36,remaining+36-max));}
+  }
+ }
+ if(!isLoaded){
+  s.water=0;
+  const can=s.inv.findIndex(st=>st?.id==='can');
+  if(can>0)[s.inv[0],s.inv[can]]=[s.inv[can],s.inv[0]];
+  const spade=s.inv.findIndex(st=>st?.id==='spade');
+  if(spade>1)[s.inv[1],s.inv[spade]]=[s.inv[spade],s.inv[1]];
+  selected=0;
+ }
+}
+const v09PreviousInit=initNew;
+initNew=function(){v09PreviousInit();v09RepairEquipment(false)};
+const v09PreviousReset=resetForLoad;
+resetForLoad=function(){
+ // A compatibilidade de saves antigos exige versão 6 ao iniciar a migração.
+ if(s?.version>=7)s.version=6;
+ v09PreviousReset();v09RepairEquipment(true);
+};
+const v09PreviousStart=startGame;
+startGame=function(loaded=false){v09PreviousStart(loaded);if(s){v09RepairEquipment(!!loaded);renderUI()}};
+const v09PreviousSave=save;
+save=function(){if(s){v09RepairEquipment(true);s.v09StartingGearFixed=true;}return v09PreviousSave()};
+const v09PreviousPerson=spritePerson;
+spritePerson=function(cv,cx,feet,custom,dir='down',walk=0,zoom=2){
+ try{if(window.FloresHeroV09?.draw(cv,cx,feet,custom,dir,walk,zoom))return;}catch(err){console.warn('Sprite alternativo indisponível:',err)}
+ return v09PreviousPerson(cv,cx,feet,custom,dir,walk,zoom);
+};
+try{document.querySelector('.brand small').textContent='Sobrevivência • personagem renovado • v0.9';}catch(_){}
+window.__floresV09QA={
+ get state(){return s},
+ equipment:()=>s?.inv?.filter(st=>['can','spade'].includes(st?.id)).map(st=>({id:st.id,durability:st.durability,max:st.maxDurability})),
+ dig:(x,y)=>{const i=s.inv.findIndex(st=>st?.id==='spade');if(i<0)return false;selected=i;const before=s.stats.tilled;actUse({x,y});return s.stats.tilled>before},
+ repair:()=>v09RepairEquipment(true),version:'0.9'
+};
+setTimeout(()=>{try{refreshCreator();if(s)renderUI()}catch(_){}},0);
 
 $('#continueButton').classList.toggle('hidden',!savedData());
 })();</script></body></html>
